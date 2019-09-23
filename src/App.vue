@@ -5,7 +5,9 @@
       <router-link to="/about">About</router-link>
     </div>-->
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <Nav />
+      </el-aside>
       <el-container>
         <el-header>Header</el-header>
         <el-main>
@@ -17,7 +19,17 @@
   </div>
 </template>
 <script lang="ts">
-export default {};
+import { Vue, Watch } from "vue-property-decorator";
+import Component from "vue-class-component";
+import { Route } from "vue-router";
+import Nav from "@/components/Nav.vue";
+
+@Component({
+  components: {
+    Nav
+  }
+})
+export default class App extends Vue {}
 </script>
 <style lang="less">
 #app {
