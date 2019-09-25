@@ -1,14 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import user from "./modules/user";
+import { IUserState } from "./modules/user";
+import { IAppState } from "./modules/app";
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
-  strict: process.env.NODE_ENV !== "production",
-  modules: {
-    user
-  }
-});
+export interface IRootState {
+  app: IAppState;
+  user: IUserState;
+}
 
-export default store;
+// Declare empty store first, dynamically register all modules later.
+export default new Vuex.Store<IRootState>({});
