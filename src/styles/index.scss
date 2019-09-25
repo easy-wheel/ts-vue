@@ -1,0 +1,48 @@
+// @import './variables.scss'; // Already imported in style-resources-loader
+// @import './mixins.scss'; // Already imported in style-resources-loader
+@import "./transition.scss";
+@import "./svgicon.scss";
+
+/* Global scss */
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue,
+    Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+a,
+a:focus,
+a:hover {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.app-container {
+  padding: 20px;
+}
