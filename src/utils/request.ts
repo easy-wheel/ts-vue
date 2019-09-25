@@ -5,7 +5,9 @@ axios.defaults.headers = {
   // token: Cookies.get("system_token") || ""
 };
 
-axios.defaults.baseURL = process.env.VUE_APP_API ? process.env.VUE_APP_API : "";
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API
+  ? process.env.VUE_APP_BASE_API
+  : "";
 // console.log("process.env.VUE_APP_API", process.env.VUE_APP_API);
 
 // 请求拦截器
