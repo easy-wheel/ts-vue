@@ -20,7 +20,8 @@
       // 设置引入的定义文件
       "webpack-env",
       "mocha",
-      "chai"
+      "chai",
+      "node"
     ],
     "paths": {
       "@/*": ["src/*"]
