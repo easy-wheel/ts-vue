@@ -1,14 +1,12 @@
-  
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <div class="app-container">表格</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+
 @Component({
-  name: "App"
+  name: "Table"
 })
 export default class extends Vue {}
 </script>

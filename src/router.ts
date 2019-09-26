@@ -1,25 +1,77 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Layout from "@/layout/index.vue";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
-  // base: process.env.BASE_URL,
+  // mode: "history",
+  base: process.env.BASE_URL,
+  scrollBehavior: (to, from, savedPosition) => {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
   routes: [
     {
-      path: "/",
-      name: "home",
-      component: () => import(/* webpackChunkName: "home" */ "./views/home.vue")
+      path: "/login",
+      component: () =>
+        import(/* webpackChunkName: "login" */ "@/views/login/index.vue"),
+      meta: { hidden: true }
     },
     {
-      path: "/articles",
-      name: "articles",
-      // route level code-splitting
-      // this generates a separate chunk (articles.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "articles" */ "./views/articles.vue")
+      path: "/404",
+      component: () => import(/* webpackChunkName: "404" */ "@/views/404.vue"),
+      meta: { hidden: true }
+    },
+    {
+      path: "/",
+      component: Layout,
+      redirect: "/dashboard",
+      children: [
+        {
+          path: "dashboard",
+          component: () =>
+            import(
+              /* webpackChunkName: "dashboard" */ "@/views/dashboard/index.vue"
+            ),
+          meta: {
+            title: "Dashboard",
+            icon: "dashboard"
+          }
+        }
+      ]
+    },
+    {
+      path: "/example",
+      component: Layout,
+      redirect: "/example/tree",
+      meta: {
+        title: "Example",
+        icon: "example"
+      },
+      children: [
+        {
+          path: "tree",
+          component: () =>
+            import(/* webpackChunkName: "tree" */ "@/views/tree/index.vue"),
+          meta: {
+            title: "Tree",
+            icon: "tree"
+          }
+        },
+        {
+          path: "table",
+          component: () =>
+            import(/* webpackChunkName: "table" */ "@/views/table/index.vue"),
+          meta: {
+            title: "Table",
+            icon: "table"
+          }
+        }
+      ]
     }
   ]
 });

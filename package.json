@@ -49,6 +49,8 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "prettier": "^1.18.2",
+    "sass": "^1.22.12",
+    "sass-loader": "^8.0.0",
     "style-resources-loader": "^1.2.1",
     "typescript": "^3.4.3",
     "vue-cli-plugin-element": "^1.0.1",

@@ -1,7 +1,9 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    browser: true,
+    node: true,
+    es6: true
   },
   extends: ["plugin:vue/essential", "@vue/prettier", "@vue/typescript"],
   rules: {
@@ -9,7 +11,8 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
   },
   parserOptions: {
-    parser: "@typescript-eslint/parser"
+    parser: "@typescript-eslint/parser",
+    sourceType: "module"
   },
   overrides: [
     {

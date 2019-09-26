@@ -1,4 +1,5 @@
 const path = require("path");
+const name = "TS-VUE";
 const sourceMap = process.env.NODE_ENV === "development";
 
 const devServerPort = 9527;
@@ -8,7 +9,11 @@ module.exports = {
   publicPath: "/", // 基本路径
   outputDir: "dist", // 输出文件目录
   lintOnSave: process.env.NODE_ENV === "development", // eslint-loader 是否在保存的时候检查
-  chainWebpack: () => {},
+  chainWebpack: config => {
+    // Provide the app's title in webpack's name field, so that
+    // it can be accessed in index.html to inject the correct title.
+    config.set("name", name);
+  },
   // configureWebpack: config => {
   //   if (process.env.NODE_ENV === "production") {
   //     // 为生产环境修改配置...
@@ -55,27 +60,34 @@ module.exports = {
   // PWA 插件相关配置
   // see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
   pwa: {},
-  devServer: {
-    open: true,
-    compress: true,
-    host: "localhost",
-    port: devServerPort,
-    hot: true,
-    proxy: {
-      // 设置代理
-      // proxy all requests starting with /api to jsonplaceholder
-      [process.env.VUE_APP_BASE_API]: {
-        target: `http://localhost:${mockServerPort}/mock-api/v1`,
-        changeOrigin: true,
-        pathRewite: {
-          ["^" + process.env.VUE_APP_BASE_API]: ""
-        }
-      }
-    },
-    before: app => {} // 用于在服务器内部所有中间件执行前定义自定义处理程序，即此选项可在本地模拟服务器数据返回。参考https://github.com/lbwa/set/issues/8
-  },
+  // devServer: {
+  //   open: true,
+  //   compress: true,
+  //   host: "localhost",
+  //   port: devServerPort,
+  //   hot: true,
+  //   proxy: {
+  //     // 设置代理
+  //     // proxy all requests starting with /api to jsonplaceholder
+  //     [process.env.VUE_APP_BASE_API]: {
+  //       target: `http://localhost:${mockServerPort}/mock-api/v1`,
+  //       changeOrigin: true,
+  //       pathRewite: {
+  //         ["^" + process.env.VUE_APP_BASE_API]: ""
+  //       }
+  //     }
+  //   },
+  //   before: app => {} // 用于在服务器内部所有中间件执行前定义自定义处理程序，即此选项可在本地模拟服务器数据返回。参考https://github.com/lbwa/set/issues/8
+  // },
   // 第三方插件配置
   pluginOptions: {
     // ...
+    "style-resources-loader": {
+      preProcessor: "scss",
+      patterns: [
+        path.resolve(__dirname, "src/styles/_variables.scss"),
+        path.resolve(__dirname, "src/styles/_mixins.scss")
+      ]
+    }
   }
 };
