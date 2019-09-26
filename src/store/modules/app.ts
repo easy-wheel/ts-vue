@@ -14,6 +14,7 @@ export enum DeviceType { // 定义设备枚举类型
 }
 
 export interface IAppState {
+  // 定义state接口类型
   device: DeviceType;
   sidebar: {
     opened: boolean;
@@ -31,6 +32,7 @@ class App extends VuexModule implements IAppState {
 
   @Mutation
   private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
+    // 切换siderBar状态
     this.sidebar.opened = !this.sidebar.opened;
     this.sidebar.withoutAnimation = withoutAnimation;
     if (this.sidebar.opened) {

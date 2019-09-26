@@ -44,6 +44,10 @@ export default class extends Vue {
   get isCollapse() {
     return !this.sidebar.opened;
   }
+
+  private created(): void {
+    console.log("路由$route", this.$router);
+  }
 }
 </script>
 

@@ -81,7 +81,8 @@ module.exports = {
   // },
   // 第三方插件配置
   pluginOptions: {
-    // ...
+    // style-resources-loader(https://www.npmjs.com/package/vue-cli-plugin-style-resources-loader)
+    // 导入一些公共的样式文件，比如：variables / mixins / functions，避免在每个样式文件中手动的@import导入
     "style-resources-loader": {
       preProcessor: "scss",
       patterns: [
