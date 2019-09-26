@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "driver.js": "^0.9.7",
     "element-ui": "^2.12.0",
     "js-cookie": "^2.2.1",
     "normalize.css": "^8.0.1",
@@ -21,8 +22,8 @@
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1",
     "vue-svgicon": "^3.2.6",
+    "vuex": "^3.0.1",
     "vuex-class": "^0.3.2",
     "vuex-module-decorators": "^0.10.1"
   },
