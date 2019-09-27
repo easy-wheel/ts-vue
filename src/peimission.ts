@@ -2,7 +2,7 @@ import router from "./router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { Message } from "element-ui";
-import { Route } from "vue-router";
+import { Route, RouteConfig } from "vue-router";
 import { UserModule } from "@/store/modules/user";
 import { PermissionModule } from "@/store/modules/permission";
 
@@ -28,11 +28,17 @@ router.beforeEach(async (to: Route, _: Route, next: any) => {
           await UserModule.GetUserInfo();
           const roles = UserModule.roles;
           // Generate accessible routes map based on role
-          PermissionModule.GenerateRoutes(roles);
+          console.log("角色", roles);
+
+          const accessedRoutes: any = await PermissionModule.GenerateRoutes(
+            roles
+          );
           // Dynamically add accessible routes
-          console.log("动态路由", PermissionModule.dynamicRoutes);
-          router.addRoutes(PermissionModule.dynamicRoutes);
+          console.log(router);
+
+          router.addRoutes(accessedRoutes);
           // Set the replace: true, so the navigation will not leave a history record
+
           next({ ...to, replace: true });
         } catch (err) {
           // Remove token and redirect to login page

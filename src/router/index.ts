@@ -123,14 +123,22 @@ export const constantRoutes: RouteConfig[] = [
 
 export const asyncRoutes: RouteConfig[] = [
   {
-    path: "/account",
-    component: () =>
-      import(/* webpackChunkName: "account" */ "@/views/account/index.vue"),
-    name: "Account",
-    meta: {
-      title: "account",
-      roles: ["admin"] // or you can only set roles in sub nav
-    }
+    path: "/permission",
+    component: Layout,
+    // redirect: "/permission/account",
+    name: "Permission",
+    children: [
+      {
+        path: "account",
+        component: () =>
+          import(/* webpackChunkName: "account" */ "@/views/account/index.vue"),
+        name: "Account",
+        meta: {
+          title: "account",
+          roles: ["admin"] // or you can only set roles in sub nav
+        }
+      }
+    ]
   }
 ];
 

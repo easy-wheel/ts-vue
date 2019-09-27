@@ -17,15 +17,27 @@ const hasPermission = (roles: string[], route: RouteConfig) => {
   }
 };
 
+const deepCopy = (source: any): any => {
+  if (!source) {
+    return source;
+  }
+  let sourceCopy: any = source instanceof Array ? [] : {};
+  for (let item in source) {
+    sourceCopy[item] =
+      typeof source[item] === "object" ? deepCopy(source[item]) : source[item];
+  }
+  return sourceCopy;
+};
+
 export const filterAsyncRoutes = (routes: RouteConfig[], roles: string[]) => {
   const res: RouteConfig[] = [];
   routes.forEach(route => {
-    const r = { ...route };
-    if (hasPermission(roles, r)) {
-      if (r.children) {
-        r.children = filterAsyncRoutes(r.children, roles);
+    const tmp = { ...route };
+    if (hasPermission(roles, tmp)) {
+      if (tmp.children) {
+        tmp.children = filterAsyncRoutes(tmp.children, roles);
       }
-      res.push(r);
+      res.push(tmp);
     }
   });
   return res;
@@ -38,24 +50,30 @@ export interface IPermissionState {
 
 @Module({ dynamic: true, store, name: "permission" })
 class Permission extends VuexModule implements IPermissionState {
-  public routes: RouteConfig[] = [];
+  public routes: RouteConfig[] = deepCopy(constantRoutes);
   public dynamicRoutes: RouteConfig[] = [];
 
   @Mutation
   private SET_ROUTES(routes: RouteConfig[]) {
-    this.routes = constantRoutes.concat(routes);
+    this.routes = deepCopy(constantRoutes.concat(routes));
     this.dynamicRoutes = routes;
   }
 
   @Action
   public GenerateRoutes(roles: string[]) {
-    let accessedRoutes;
-    if (roles.includes("admin")) {
-      accessedRoutes = asyncRoutes;
-    } else {
-      accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
-    }
-    this.SET_ROUTES(accessedRoutes);
+    // let accessedRoutes;
+    // if (roles.includes("admin")) {
+    //   accessedRoutes = asyncRoutes;
+    // } else {
+    //   accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
+    // }
+    // this.SET_ROUTES(accessedRoutes);
+
+    return new Promise(resolve => {
+      let accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
+      this.SET_ROUTES(deepCopy(accessedRoutes));
+      resolve(accessedRoutes);
+    });
   }
 }
 
