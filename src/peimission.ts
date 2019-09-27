@@ -34,8 +34,6 @@ router.beforeEach(async (to: Route, _: Route, next: any) => {
             roles
           );
           // Dynamically add accessible routes
-          console.log(router);
-
           router.addRoutes(accessedRoutes);
           // Set the replace: true, so the navigation will not leave a history record
 

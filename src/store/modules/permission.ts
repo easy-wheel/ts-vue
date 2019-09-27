@@ -50,12 +50,12 @@ export interface IPermissionState {
 
 @Module({ dynamic: true, store, name: "permission" })
 class Permission extends VuexModule implements IPermissionState {
-  public routes: RouteConfig[] = deepCopy(constantRoutes);
+  public routes: RouteConfig[] = [];
   public dynamicRoutes: RouteConfig[] = [];
 
   @Mutation
   private SET_ROUTES(routes: RouteConfig[]) {
-    this.routes = deepCopy(constantRoutes.concat(routes));
+    this.routes = constantRoutes.concat(routes);
     this.dynamicRoutes = routes;
   }
 
@@ -71,7 +71,7 @@ class Permission extends VuexModule implements IPermissionState {
 
     return new Promise(resolve => {
       let accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
-      this.SET_ROUTES(deepCopy(accessedRoutes));
+      this.SET_ROUTES(accessedRoutes);
       resolve(accessedRoutes);
     });
   }
