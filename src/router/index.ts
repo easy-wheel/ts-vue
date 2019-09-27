@@ -135,6 +135,7 @@ export const asyncRoutes: RouteConfig[] = [
         name: "Account",
         meta: {
           title: "account",
+          icon: "user",
           roles: ["admin"] // or you can only set roles in sub nav
         }
       }

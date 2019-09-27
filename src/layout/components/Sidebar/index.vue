@@ -24,6 +24,8 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { AppModule } from "@/store/modules/app";
 import SidebarItem from "./SidebarItem.vue";
+import { PermissionModule } from "@/store/modules/permission";
+
 import variables from "@/styles/_variables.scss";
 @Component({
   name: "SideBar",
@@ -35,8 +37,10 @@ export default class extends Vue {
   get sidebar() {
     return AppModule.sidebar;
   }
+  // vue-router addRouter后$router.options.routes不会动态更新问题  https://github.com/vuejs/vue-router/issues/2280
+  // 前端在vuex维护一份addRouter后的完整路由信息，用于菜单渲染
   get routes() {
-    return (this.$router as any).options.routes;
+    return PermissionModule.routes;
   }
   get variables() {
     return variables;
