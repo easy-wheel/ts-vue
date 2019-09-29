@@ -1,3 +1,3 @@
 import { getData, postData } from "@/utils/request";
 
-export const getArticles = (data: any) => getData("/articles", data);
+export const getArticles = (params: any) => getData("/articles", params);
