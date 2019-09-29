@@ -12,12 +12,20 @@ import "@/peimission";
 import "@/styles/element-variables.scss";
 import "@/styles/index.scss";
 
+import * as filters from "@/filters";
+
 Vue.use(ElementUI);
 Vue.use(SvgIcon, {
   tagName: "svg-icon",
   defaultWidth: "1em",
   defaultHeight: "1em"
 });
+
+// Register global filter functions
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, (filters as { [key: string]: Function })[key]);
+});
+
 Vue.config.productionTip = false;
 
 new Vue({
