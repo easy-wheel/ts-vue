@@ -136,10 +136,15 @@ export const asyncRoutes: RouteConfig[] = [
         meta: {
           title: "account",
           icon: "user",
-          roles: ["admin"] // or you can only set roles in sub nav
+          roles: ["editors"] // or you can only set roles in sub nav
         }
       }
     ]
+  },
+  {
+    path: "*",
+    redirect: "/404",
+    meta: { hidden: true }
   }
 ];
 

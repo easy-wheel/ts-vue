@@ -60,25 +60,27 @@ module.exports = {
   // PWA 插件相关配置
   // see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
   pwa: {},
-  // devServer: {
-  //   open: true,
-  //   compress: true,
-  //   host: "localhost",
-  //   port: devServerPort,
-  //   hot: true,
-  //   proxy: {
-  //     // 设置代理
-  //     // proxy all requests starting with /api to jsonplaceholder
-  //     [process.env.VUE_APP_BASE_API]: {
-  //       target: `http://localhost:${mockServerPort}/mock-api/v1`,
-  //       changeOrigin: true,
-  //       pathRewite: {
-  //         ["^" + process.env.VUE_APP_BASE_API]: ""
-  //       }
-  //     }
-  //   },
-  //   before: app => {} // 用于在服务器内部所有中间件执行前定义自定义处理程序，即此选项可在本地模拟服务器数据返回。参考https://github.com/lbwa/set/issues/8
-  // },
+  devServer: {
+    open: true,
+    compress: true,
+    host: "localhost",
+    port: devServerPort,
+    hot: true,
+    proxy:
+      "https://vue-typescript-admin-mock-server.armour.now.sh/mock-api/v1/",
+    // proxy: {
+    //   // 设置代理
+    //   // proxy all requests starting with /api to jsonplaceholder
+    //   [process.env.VUE_APP_BASE_API]: {
+    //     target: `http://localhost:${mockServerPort}/mock-api/v1`,
+    //     changeOrigin: true,
+    //     pathRewite: {
+    //       ["^" + process.env.VUE_APP_BASE_API]: ""
+    //     }
+    //   }
+    // },
+    before: app => {} // 用于在服务器内部所有中间件执行前定义自定义处理程序，即此选项可在本地模拟服务器数据返回。参考https://github.com/lbwa/set/issues/8
+  },
   // 第三方插件配置
   pluginOptions: {
     // style-resources-loader(https://www.npmjs.com/package/vue-cli-plugin-style-resources-loader)
