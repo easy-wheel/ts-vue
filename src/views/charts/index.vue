@@ -1,5 +1,5 @@
 <template>
-  <div>账户列表页</div>
+  <div>图表</div>
 </template>
 
 <script lang="ts">

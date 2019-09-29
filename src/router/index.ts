@@ -125,8 +125,14 @@ export const asyncRoutes: RouteConfig[] = [
   {
     path: "/permission",
     component: Layout,
-    // redirect: "/permission/account",
+    redirect: "/permission/setting",
     name: "Permission",
+    meta: {
+      title: "permission",
+      icon: "lock",
+      roles: ["admin", "editor"], // you can set roles in root nav
+      alwaysShow: true // will always show the root menu
+    },
     children: [
       {
         path: "account",
@@ -136,7 +142,37 @@ export const asyncRoutes: RouteConfig[] = [
         meta: {
           title: "account",
           icon: "user",
-          roles: ["editors"] // or you can only set roles in sub nav
+          roles: ["admin"] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: "setting",
+        component: () =>
+          import(/* webpackChunkName: "setting" */ "@/views/setting/index.vue"),
+        name: "Setting",
+        meta: {
+          title: "setting",
+          icon: "setting"
+        }
+      }
+    ]
+  },
+  {
+    path: "/charts",
+    component: Layout,
+    redirect: "/charts/index",
+    meta: {
+      roles: ["admin"]
+    },
+    children: [
+      {
+        path: "index",
+        component: () =>
+          import(/* webpackChunkName: "charts" */ "@/views/charts/index.vue"),
+        name: "charts",
+        meta: {
+          title: "charts",
+          icon: "chart"
         }
       }
     ]

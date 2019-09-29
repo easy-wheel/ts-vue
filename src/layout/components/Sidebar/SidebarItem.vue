@@ -3,7 +3,7 @@
     v-if="!item.meta || !item.meta.hidden"
     :class="['menu-wrapper', isCollapse ? 'simple-mode' : 'full-mode', {'first-level': isFirstLevel}]"
   >
-    <template v-if="theOnlyOneChild && !theOnlyOneChild.children">
+    <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
       <sidebar-item-link v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
         <el-menu-item
           :index="resolvePath(theOnlyOneChild.path)"
@@ -71,6 +71,13 @@ export default class extends Vue {
 
   // @Ref(refKey?: string)
   // @Ref 装饰器接收一个可选参数，用来指向元素或子组件的引用信息。如果没有提供这个参数，会使用装饰器后面的属性名充当参数
+
+  get alwaysShowRootMenu() {
+    if (this.item.meta && this.item.meta.alwaysShow) {
+      return true;
+    }
+    return false;
+  }
 
   get showingChildNumber() {
     if (this.item.children) {
