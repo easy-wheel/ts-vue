@@ -1,9 +1,9 @@
 import { getData, postData } from "@/utils/request";
 
-export const getUsers = (data: any) => getData("/users", data);
+export const getUsers = (params: any) => getData("/users", params);
 
-export const getUserInfo = (data: any) => postData("/users/info", data);
+export const getUserInfo = (params: any) => postData("/users/info", params);
 
-export const login = (data: any) => postData("/users/login", data);
+export const login = (params: any) => postData("/users/login", params);
 
 export const logout = () => postData("/users/logout");

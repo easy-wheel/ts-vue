@@ -25,7 +25,7 @@
 
       <el-table-column align="center" label="Actions">
         <template slot-scope="scope">
-          <router-link :to="'/example/edit/'+scope.row.id">
+          <router-link :to="'/table/edit/'+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">Edit</el-button>
           </router-link>
         </template>
@@ -69,6 +69,7 @@ export default class extends Vue {
   private async getList() {
     this.listLoading = true;
     const { data } = await getArticles(this.listParams);
+    console.log("列表", data);
     this.list = data.items;
     this.total = data.total;
     // Just to simulate the time of the request

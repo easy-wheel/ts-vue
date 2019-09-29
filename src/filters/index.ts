@@ -2,7 +2,7 @@
 export { parseTime } from "@/utils";
 
 // Filter for article status
-export const articlesStatusFilter = (status: string) => {
+export const articleStatusFilter = (status: string) => {
   const statusMap: { [key: string]: string } = {
     published: "success",
     draft: "info",

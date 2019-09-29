@@ -91,7 +91,8 @@ export const constantRoutes: RouteConfig[] = [
     redirect: "/example/tree",
     meta: {
       title: "Example",
-      icon: "example"
+      icon: "example",
+      alwaysShow: true
     },
     children: [
       {
@@ -102,13 +103,51 @@ export const constantRoutes: RouteConfig[] = [
           title: "Tree",
           icon: "tree"
         }
+      }
+    ]
+  },
+  {
+    path: "/table",
+    component: Layout,
+    redirect: "/table/list",
+    meta: {
+      title: "Table",
+      icon: "table"
+    },
+    children: [
+      {
+        path: "create",
+        component: () =>
+          import(
+            /* webpackChunkName: "table-create" */ "@/views/table/create.vue"
+          ),
+        name: "CreateArticle",
+        meta: {
+          title: "createArticle",
+          icon: "edit"
+        }
       },
       {
-        path: "table",
+        path: "edit/:id(\\d+)",
         component: () =>
-          import(/* webpackChunkName: "table" */ "@/views/table/index.vue"),
+          import(/* webpackChunkName: "table-edit" */ "@/views/table/edit.vue"),
+        name: "EditArticle",
         meta: {
-          title: "Table",
+          title: "editArticle",
+          noCache: true,
+          activeMenu: "/table/list",
+          hidden: true
+        }
+      },
+      {
+        path: "list",
+        component: () =>
+          import(
+            /* webpackChunkName: "table-list" */ "@/views/table/index.vue"
+          ),
+        name: "ArticleList",
+        meta: {
+          title: "articleList",
           icon: "table"
         }
       }
