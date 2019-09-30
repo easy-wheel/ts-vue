@@ -45,10 +45,14 @@ export default class extends Vue {
     this.breadcrumbs = matched.filter(item => {
       return item.meta && item.meta.title && item.meta.breadcrumb !== false;
     });
+    console.log("breadcrumbs", this.breadcrumbs);
   }
   private isDashboard(route: RouteRecord) {
-    const name = route && route.meta && route.meta.title;
-    return name === "Dashboard";
+    const name = route && route.name;
+    if (!name) {
+      return false;
+    }
+    return name.trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
   }
   private pathCompile(path: string) {
     // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
