@@ -5,6 +5,9 @@
     <div class="main-container">
       <navbar />
       <app-main />
+      <right-panel v-if="showSettings">
+        <settings />
+      </right-panel>
     </div>
   </div>
 </template>
@@ -13,7 +16,9 @@
 import { Component } from "vue-property-decorator";
 import { mixins } from "vue-class-component";
 import { DeviceType, AppModule } from "@/store/modules/app";
-import { AppMain, Navbar, Sidebar } from "./components";
+import { SettingsModule } from "@/store/modules/settings";
+import RightPanel from "@/components/RightPanel/index.vue";
+import { AppMain, Navbar, Settings, Sidebar } from "./components";
 import ResizeMixin from "./mixin/resize";
 
 @Component({
@@ -21,7 +26,9 @@ import ResizeMixin from "./mixin/resize";
   components: {
     AppMain,
     Navbar,
-    Sidebar
+    Sidebar,
+    RightPanel,
+    Settings
   }
 })
 export default class extends mixins(ResizeMixin) {
@@ -32,6 +39,10 @@ export default class extends mixins(ResizeMixin) {
       withoutAnimation: this.sidebar.withoutAnimation,
       mobile: this.device === DeviceType.Mobile
     };
+  }
+
+  get showSettings() {
+    return SettingsModule.showSettings;
   }
   private handleClickOutside() {
     AppModule.CloseSideBar(false);

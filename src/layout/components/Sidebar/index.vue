@@ -1,10 +1,11 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
+      :default-active="activeMenu"
       :collapse="isCollapse"
       :background-color="variables.menuBg"
       :text-color="variables.menuText"
-      :active-text-color="variables.menuActiveText"
+      :active-text-color="menuActiveTextColor"
       :unique-opened="false"
       :collapse-transition="false"
       mode="vertical"
@@ -25,8 +26,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { AppModule } from "@/store/modules/app";
 import SidebarItem from "./SidebarItem.vue";
 import { PermissionModule } from "@/store/modules/permission";
-
+import { SettingsModule } from "@/store/modules/settings";
 import variables from "@/styles/_variables.scss";
+
 @Component({
   name: "SideBar",
   components: {
@@ -47,6 +49,23 @@ export default class extends Vue {
   }
   get isCollapse() {
     return !this.sidebar.opened;
+  }
+  get menuActiveTextColor() {
+    if (SettingsModule.sidebarTextTheme) {
+      return SettingsModule.theme;
+    } else {
+      return variables.menuActiveText;
+    }
+  }
+
+  get activeMenu() {
+    const route = this.$route;
+    const { meta, path } = route;
+    // if set path, the sidebar will highlight the path you set
+    if (meta.activeMenu) {
+      return meta.activeMenu;
+    }
+    return path;
   }
 
   private created(): void {
