@@ -8,6 +8,9 @@
     />
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <div class="right-menu">
+      <template v-if="device!=='mobile'">
+        <screenfull class="right-menu-item hover-effect" />
+      </template>
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img src="@/assets/avatar.png" class="user-avatar" />
@@ -43,12 +46,14 @@ import { AppModule } from "@/store/modules/app";
 import { UserModule } from "@/store/modules/user";
 import Breadcrumb from "@/components/Breadcrumb/index.vue";
 import Hamburger from "@/components/Hamburger/index.vue";
+import Screenfull from "@/components/Screenfull/index.vue";
 
 @Component({
   name: "Navbar",
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    Screenfull
   }
 })
 export default class extends Vue {
