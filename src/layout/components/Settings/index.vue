@@ -10,6 +10,11 @@
           @change="themeChange"
         />
       </div>
+
+      <div class="drawer-item">
+        <span>侧边栏文字主题色</span>
+        <el-switch v-model="sidebarTextTheme" class="drawer-switch" />
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +30,12 @@ import ThemePicker from "@/components/ThemePicker/index.vue";
   }
 })
 export default class extends Vue {
+  get sidebarTextTheme() {
+    return SettingsModule.sidebarTextTheme;
+  }
+  set sidebarTextTheme(value) {
+    SettingsModule.ChangeSetting({ key: "sidebarTextTheme", value });
+  }
   private themeChange(value: string) {
     SettingsModule.ChangeSetting({ key: "theme", value });
   }
