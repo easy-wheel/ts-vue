@@ -3,6 +3,31 @@
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
     </el-row>
+    <el-row :gutter="32">
+      <!-- <el-col
+        :xs="24"
+        :sm="24"
+        :lg="8"
+      >
+        <div class="chart-wrapper">
+          <radar-chart />
+        </div>
+      </el-col>
+      <el-col
+        :xs="24"
+        :sm="24"
+        :lg="8"
+      >
+        <div class="chart-wrapper">
+          <pie-chart />
+        </div>
+      </el-col>-->
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <bar-chart />
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -10,6 +35,7 @@
 import "echarts/theme/macarons.js"; // Theme used in BarChart, LineChart, PieChart and RadarChart
 import { Component, Vue } from "vue-property-decorator";
 import LineChart, { ILineChartData } from "./components/LineChart.vue";
+import BarChart from "./components/BarChart.vue";
 
 // just for mock, should get from server
 const lineChartData: { [type: string]: ILineChartData } = {
@@ -34,7 +60,8 @@ const lineChartData: { [type: string]: ILineChartData } = {
 @Component({
   name: "DashboardAdmin",
   components: {
-    LineChart
+    LineChart,
+    BarChart
   }
 })
 export default class extends Vue {
