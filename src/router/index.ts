@@ -148,7 +148,7 @@ export const constantRoutes: RouteConfig[] = [
         name: "ArticleList",
         meta: {
           title: "articleList",
-          icon: "table"
+          icon: "list"
         }
       }
     ]
