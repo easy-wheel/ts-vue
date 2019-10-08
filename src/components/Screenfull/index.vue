@@ -5,12 +5,11 @@
 </template>
 
 <script lang="ts">
-import screenfull from "screenfull";
-import { Screenfull } from "screenfull";
+import screenfull, { Screenfull } from "screenfull";
 
 import { Component, Vue } from "vue-property-decorator";
 
-const sf = <Screenfull>screenfull;
+let sf = <Screenfull>screenfull;
 
 @Component({
   name: "Screenfull"
@@ -19,26 +18,26 @@ export default class extends Vue {
   private isFullscreen = false;
 
   mounted() {
-    if (sf && sf.enabled) {
+    if (sf && sf.isEnabled) {
       sf.on("change", this.change);
     }
   }
 
   beforeDestory() {
-    if (sf && sf.enabled) {
+    if (sf && sf.isEnabled) {
       sf.off("change", this.change);
     }
   }
 
   private change() {
-    if (sf && sf.enabled) {
+    if (sf && sf.isEnabled) {
       this.isFullscreen = sf.isFullscreen;
     }
   }
 
   private click() {
     if (sf) {
-      if (!sf.enabled) {
+      if (!sf.isEnabled) {
         this.$message({
           message: "you browser can not work",
           type: "warning"
