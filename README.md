@@ -58,7 +58,7 @@
 
 ## 目录结构
 
-```bash
+```
 |-- ts-vue
     |-- .browserslistrc     # browserslistrc 配置文件 (用于支持 Autoprefixer)
     |-- .env.development    # development环境变量配置
