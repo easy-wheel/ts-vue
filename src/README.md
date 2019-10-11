@@ -175,3 +175,96 @@ import { Vue, Component, Inject, Provide, Prop, Model, Watch, Emit, Mixins } fro
   - @Emit 装饰器接收一个可选参数，该参数是\$Emit 的第一个参数，充当事件名。如果没有提供这个参数，\$Emit 会将回调函数名的 camelCase 转为 kebab-case，并将其作为事件名
   - @Emit 会将回调函数的返回值作为第二个参数，如果返回值是一个 Promise 对象，\$emit 会在 Promise 对象被标记为 resolved 之后触发
   - @Emit 的回调函数的参数，会放在其返回值之后，一起被\$emit 当做参数使用
+
+### <font color=#1890ff>vuex-module-decorators</font>
+
+在使用 store 装饰器之前，先过一下传统的 store 用法吧
+
+```
+export default  {
+    namespaced:true,
+    state:{
+        foo:""
+    },
+    getters:{
+        getFoo(state){ return state.foo}
+    },
+    mutations:{
+        setFooSync(state,payload){
+            state.foo = payload
+        }
+    },
+    actions:{
+        setFoo({commit},payload){
+            commot("getFoo",payload)
+        }
+    }
+}
+
+```
+
+然后开始使用<font color=#1890ff>vuex-module-decorators</font>
+
+```
+import {
+  VuexModule,
+  Mutation,
+  Action,
+  getModule,
+  Module
+} from "vuex-module-decorators";
+```
+
+- <font color=#1890ff>VuexModule</font> 用于基本属性
+
+  ```
+  export default class TestModule extends VuexModule { }
+  ```
+
+  VuexModule 提供了一些基本属性，包括 namespaced,state,getters,modules,mutations,actions,context
+
+- <font color=#1890ff>@Module</font> 标记当前为 module
+
+  ```
+  @Module({ dynamic: true, store, name: "settings" })
+  class Settings extends VuexModule implements ISettingsState {
+
+  }
+  ```
+
+  module 本身有几种可以配置的属性:
+
+  - namespaced:boolean 启/停用 分模块
+  - stateFactory:boolean 状态工厂
+  - dynamic:boolean 在 store 创建之后，再添加到 store 中。 开启 dynamic 之后必须提供下面的属性
+  - name:string 指定模块名称 \* store:Vuex.Store 实体 提供初始的 store
+
+* <font color=#1890ff>@Mutation</font> 标注为 mutation
+
+  ```
+  @Mutation
+  private SET_NAME(name: string) {
+  // 设置用户名
+  this.name = name;
+  }
+  ```
+
+* <font color=#1890ff>@Action</font> 标注为 action
+
+  ```
+  @Action
+  public async Login(userInfo: { username: string; password: string }) {
+    // 登录接口，拿到token
+    let { username, password } = userInfo;
+    username = username.trim();
+    const { data } = await login({ username, password });
+    setToken(data.accessToken);
+    this.SET_TOKEN(data.accessToken);
+  }
+  ```
+
+* <font color=#1890ff>getModule</font> 得到一个类型安全的 store，module 必须提供 name 属性
+
+  ```
+  export const UserModule = getModule(User);
+  ```

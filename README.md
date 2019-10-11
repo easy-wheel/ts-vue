@@ -5,10 +5,10 @@
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/ElemeFE/element">
-    <img src="https://img.shields.io/badge/element--ui-2.12.0-brightgreen" alt="element-ui">
+    <img src="https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://www.typescriptlang.org/">
-    <img src="https://img.shields.io/badge/typescript-3.4.3-brightgreen" alt="typescript">
+    <img src="https://img.shields.io/badge/typescript-3.4.3-brightgreen.svg" alt="typescript">
   </a>
 </p>
 
@@ -18,7 +18,7 @@
 
 ## 截图
 
-![主页](./demo/dash_board.png))
+![主页](./demo/dash_board.png)
 
 ## 功能
 
@@ -103,13 +103,13 @@
 
 ### 安装依赖
 
-```bash
+```
 npm install
 ```
 
 ### 启动本地开发环境（自带热启动）
 
-```bash
+```
 npm run serve
 ```
 
