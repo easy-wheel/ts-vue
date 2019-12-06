@@ -17,7 +17,7 @@
       <template scope="scope">
         <el-input
           v-model="scope.row.date"
-          placeholder="请输入内容啊"
+          placeholder="请输入内容"
           v-show="scope.row.showEdit"
         ></el-input>
         <span v-show="!scope.row.showEdit">{{ scope.row.date }}</span>
