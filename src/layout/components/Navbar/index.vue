@@ -8,12 +8,15 @@
     />
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <div class="right-menu">
-      <template v-if="device!=='mobile'">
+      <template v-if="device !== 'mobile'">
         <screenfull class="right-menu-item hover-effect" />
       </template>
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+      <el-dropdown
+        class="avatar-container right-menu-item hover-effect"
+        trigger="click"
+      >
         <div class="avatar-wrapper">
-          <img src="@/assets/avatar.png" class="user-avatar" />
+          <img src="@/assets/avatar.jpeg" class="user-avatar" />
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
@@ -53,8 +56,8 @@ import Screenfull from "@/components/Screenfull/index.vue";
   components: {
     Breadcrumb,
     Hamburger,
-    Screenfull
-  }
+    Screenfull,
+  },
 })
 export default class extends Vue {
   get sidebar() {

@@ -41,7 +41,9 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :name="passwordType === 'password' ? 'eye-off' : 'eye-on'" />
+          <svg-icon
+            :name="passwordType === 'password' ? 'eye-off' : 'eye-on'"
+          />
         </span>
       </el-form-item>
 
@@ -50,7 +52,8 @@
         type="primary"
         style="width:100%; margin-bottom:30px;"
         @click.native.prevent="handleLogin"
-      >Sign in</el-button>
+        >Sign in</el-button
+      >
 
       <div style="position:relative">
         <div class="tips">
@@ -70,7 +73,7 @@ import { Form as ElForm, Input } from "element-ui";
 import { UserModule } from "@/store/modules/user";
 import { isValidUsername } from "@/utils/validate";
 @Component({
-  name: "Login"
+  name: "Login",
 })
 export default class extends Vue {
   private validateUsername = (rule: any, value: string, callback: Function) => {
@@ -89,11 +92,11 @@ export default class extends Vue {
   };
   private loginForm = {
     username: "admin",
-    password: "111111"
+    password: "111111",
   };
   private loginRules = {
     username: [{ validator: this.validateUsername, trigger: "blur" }],
-    password: [{ validator: this.validatePassword, trigger: "blur" }]
+    password: [{ validator: this.validatePassword, trigger: "blur" }],
   };
   private passwordType = "password";
   private loading = false;
@@ -134,7 +137,7 @@ export default class extends Vue {
         await UserModule.Login(this.loginForm);
         this.$router.push({
           path: this.redirect || "/",
-          query: this.otherQuery
+          query: this.otherQuery,
         });
         // Just to simulate the time of the request
         setTimeout(() => {
@@ -202,10 +205,16 @@ export default class extends Vue {
 
 <style lang="scss" scoped>
 .login-container {
+  position: relative;
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  background-color: $loginBg;
+  // overflow: hidden;
+  // background-color: $loginBg;
+  // background-image: url("../../../public/images/ts-vue-login-banner01.jpeg");
+  // background-size: cover;
+  // background-position: center center;
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
   .login-form {
     position: relative;
     width: 520px;
@@ -250,5 +259,27 @@ export default class extends Vue {
     cursor: pointer;
     user-select: none;
   }
+}
+.login-container::before {
+  background-image: url("../../../public/images/ts-vue-login-banner01.jpeg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  content: "";
+  display: block;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  //一定要设置position:absolute,这样才能设置z-index，让背景处于内容的下一层
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 </style>

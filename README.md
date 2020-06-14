@@ -18,7 +18,13 @@
 
 ## 截图
 
-![主页](./demo/dash_board.png)
+### 登陆页
+
+![登陆页](./demo/ts-vue-demo-01.png)
+
+### 主页
+
+![主页](./demo/ts-vue-demo-02.png)
 
 ## 功能
 
