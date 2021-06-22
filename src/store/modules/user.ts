@@ -3,7 +3,7 @@ import {
   Module,
   Action,
   Mutation,
-  getModule
+  getModule,
 } from "vuex-module-decorators";
 import { login, logout, getUserInfo } from "@/api/users";
 import { getToken, setToken, removeToken } from "@/utils/cookies";
@@ -74,7 +74,12 @@ class User extends VuexModule implements IUserState {
     // 登录接口，拿到token
     let { username, password } = userInfo;
     username = username.trim();
-    const { data } = await login({ username, password });
+    // fix: 移除接口请求
+    // 业务调用方可自行添加业务逻辑
+    // let { data } = await login({ username, password });
+    let data = {
+      accessToken: "abc",
+    };
     setToken(data.accessToken);
     this.SET_TOKEN(data.accessToken);
   }
@@ -93,9 +98,18 @@ class User extends VuexModule implements IUserState {
     if (this.token === "") {
       throw Error("GetUserInfo: token is undefined!");
     }
-    const { data } = await getUserInfo({
-      /* Your params here */
-    });
+    // fix: 移除接口请求
+    // let { data } = await getUserInfo({
+    //   /* Your params here */
+    // });
+    let data = {
+      user: {
+        roles: ["admin", "editor"],
+        name: "cosen",
+        avatar: "",
+        introduction: "",
+      },
+    };
     console.log("用户信息", data);
     if (!data) {
       throw Error("Verification failed, please Login again.");
@@ -118,7 +132,8 @@ class User extends VuexModule implements IUserState {
     if (this.token === "") {
       throw Error("LogOut: token is undefined!");
     }
-    await logout();
+    // fix: 移除接口请求
+    // await logout();
     removeToken();
     this.SET_TOKEN("");
     this.SET_ROLES([]);
