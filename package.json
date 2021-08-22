@@ -8,7 +8,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "prepare": "husky install"
+
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -83,12 +85,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
