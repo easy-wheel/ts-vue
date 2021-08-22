@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "========= 执行pre-commit操作（如执行测试用例、eslint校验等，可自行添加） ======="
