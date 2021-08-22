@@ -8,9 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
-    "test:unit": "vue-cli-service test:unit",
-    "commit": "git-cz",
-    "precommit": "lint-staged"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -86,11 +84,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "husky": {
     "hooks": {
