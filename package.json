@@ -2,7 +2,7 @@
   "name": "ts-vue",
   "version": "0.1.0",
   "private": true,
-  "author": "<fengshuan95@gmail.com>",
+  "author": "cosen95",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
