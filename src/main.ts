@@ -25,7 +25,6 @@ Vue.use(SvgIcon, {
 Object.keys(filters).forEach(key => {
   Vue.filter(key, (filters as { [key: string]: Function })[key]);
 });
-// console.log("测试");
 Vue.config.productionTip = false;
 
 new Vue({
