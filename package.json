@@ -2,11 +2,11 @@
   "name": "ts-vue",
   "version": "0.1.0",
   "private": true,
-  "author": "cosen95",
+  "author": "Cosen95",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --fix",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
     "test:unit": "vue-cli-service test:unit",
     "prepare": "husky install"

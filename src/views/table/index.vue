@@ -54,8 +54,8 @@ import Pagination from "@/components/Pagination/index.vue";
 @Component({
   name: "Table",
   components: {
-    Pagination,
-  },
+    Pagination
+  }
 })
 export default class extends Vue {
   private total = 0;
@@ -63,7 +63,7 @@ export default class extends Vue {
   private listLoading = false;
   private listParams = {
     page: 1,
-    limit: 20,
+    limit: 20
   };
 
   created() {

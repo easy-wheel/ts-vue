@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :style="{height: height, width: width}"></div>
+  <div :class="className" :style="{ height: height, width: width }"></div>
 </template>
 
 <script lang="ts">
@@ -119,5 +119,4 @@ export default class extends mixins(ResizeMixin) {
 }
 </script>
 
-<style lang="" scoped>
-</style>
+<style lang="" scoped></style>

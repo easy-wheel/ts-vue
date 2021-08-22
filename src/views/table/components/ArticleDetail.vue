@@ -1,7 +1,16 @@
 <template>
   <div class="container">
-    <el-form ref="articleForm" :model="articleForm" label-width="120px" :rules="rules">
-      <el-form-item label="Author:" class="postInfo-container-item" prop="author">
+    <el-form
+      ref="articleForm"
+      :model="articleForm"
+      label-width="120px"
+      :rules="rules"
+    >
+      <el-form-item
+        label="Author:"
+        class="postInfo-container-item"
+        prop="author"
+      >
         <el-select
           v-model="articleForm.author"
           :remote-method="getRemoteUserList"
@@ -12,7 +21,7 @@
         >
           <el-option
             v-for="(item, index) in userListOptions"
-            :key="item+index"
+            :key="item + index"
             :label="item"
             :value="item"
           />
@@ -27,11 +36,16 @@
         />
       </el-form-item>
       <el-form-item label="title：" prop="title" width="200">
-        <el-input v-model="articleForm.title" placeholder="Please input title"></el-input>
+        <el-input
+          v-model="articleForm.title"
+          placeholder="Please input title"
+        ></el-input>
       </el-form-item>
     </el-form>
     <div class="btn-box">
-      <el-button type="primary" :loading="loading" @click="submitForm">保存</el-button>
+      <el-button type="primary" :loading="loading" @click="submitForm"
+        >保存</el-button
+      >
       <!-- <el-button size="small" @click="routerBack(-1)">取 消</el-button> -->
     </div>
   </div>

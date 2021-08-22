@@ -73,7 +73,7 @@ import { Form as ElForm, Input } from "element-ui";
 import { UserModule } from "@/store/modules/user";
 import { isValidUsername } from "@/utils/validate";
 @Component({
-  name: "Login",
+  name: "Login"
 })
 export default class extends Vue {
   private validateUsername = (rule: any, value: string, callback: Function) => {
@@ -92,11 +92,11 @@ export default class extends Vue {
   };
   private loginForm = {
     username: "admin",
-    password: "111111",
+    password: "111111"
   };
   private loginRules = {
     username: [{ validator: this.validateUsername, trigger: "blur" }],
-    password: [{ validator: this.validatePassword, trigger: "blur" }],
+    password: [{ validator: this.validatePassword, trigger: "blur" }]
   };
   private passwordType = "password";
   private loading = false;
@@ -137,7 +137,7 @@ export default class extends Vue {
         await UserModule.Login(this.loginForm);
         this.$router.push({
           path: this.redirect || "/",
-          query: this.otherQuery,
+          query: this.otherQuery
         });
         // Just to simulate the time of the request
         setTimeout(() => {

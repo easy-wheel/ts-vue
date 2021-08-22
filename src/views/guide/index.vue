@@ -7,7 +7,12 @@
         target="_blank"
       >driver.js.</a>
     </aside>-->
-    <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">打开引导</el-button>
+    <el-button
+      icon="el-icon-question"
+      type="primary"
+      @click.prevent.stop="guide"
+      >打开引导</el-button
+    >
   </div>
 </template>
 
