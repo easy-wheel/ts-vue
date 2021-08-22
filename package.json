@@ -10,7 +10,6 @@
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
     "test:unit": "vue-cli-service test:unit",
     "prepare": "husky install"
-
   },
   "dependencies": {
     "axios": "^0.19.0",
